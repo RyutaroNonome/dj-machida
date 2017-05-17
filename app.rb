@@ -9,15 +9,6 @@ require 'oauth2'
 @refresh_token       = ENV['refresh_token']
 @MY_SPREAD_SHEET_KEY = ENV['MY_SPREAD_SHEET_KEY']
 
-def meow
-  (1..ws.num_rows).each do |row|
-    (1..ws.num_cols).each do |col|
-      p ws[row, 2]
-    end
-  end
-end
-
-
 def access_spreadsheet
   client = OAuth2::Client.new(
     @client_id,
