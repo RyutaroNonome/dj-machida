@@ -1,8 +1,13 @@
-require "./path.rb"
 require "rubygems"
 require "google_drive"
 require "pp"
 require 'oauth2'
+# require './path.rb'
+
+@client_id           = ENV['client_id']
+@client_secret       = ENV['client_secret']
+@refresh_token       = ENV['refresh_token']
+@MY_SPREAD_SHEET_KEY = ENV['MY_SPREAD_SHEET_KEY']
 
 def meow
   (1..ws.num_rows).each do |row|

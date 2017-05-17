@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'slack'
-require './path.rb'
 require './app.rb'
+# require './path.rb'
+
+@channel_id = ENV['channel_id']
+@token = ENV['token']
 
 @bot_name = "DJ bot"
 
