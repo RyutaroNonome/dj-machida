@@ -3,29 +3,33 @@ require 'slack'
 require './path.rb'
 require './app.rb'
 
-@bot_name = "test"
+@bot_name = "DJ bot"
 
-def params(channel_id = '', bot_name = '', text = '')
+def params(channel_id = '', bot_name = '', text = '', user = '')
   {
     channel: channel_id,
     username: bot_name,
-    text: text
+    icon_emoji: ":aw_yeah:",
+    text: "<@#{user}>\n" + text
   }
 end
 
-def post_url(comment = '')
+def post_url_params(comment = '', user = '')
   @url = comment.match(/\<https?:\/\/.+?\>/).to_s.gsub(/(\<|\>|\|.+)/, "")
-  return @url
+  @user = user
+  return params(@channel_id, @bot_name, @url, @user)
 end
 
-def post_url_params(comment = '')
-  @url = comment.match(/\<https?:\/\/.+?\>/).to_s.gsub(/(\<|\>|\|.+)/, "")
-  return params(@channel_id, @bot_name, @url)
-end
-
-def post_error_params(comment = '')
+def post_error_params(comment = '', user = '')
   text = comment
-  return params(@channel_id, @bot_name, text)
+  @user = user
+  return params(@channel_id, @bot_name, text, @user)
+end
+
+def get_url_params(comment = '', user = '')
+  text = "こちら\n" + comment
+  @user = user
+  return params(@channel_id, @bot_name, text, @user)
 end
 
 Thread.start do
@@ -36,21 +40,22 @@ Thread.start do
     client.on :message do |data|
       puts "data取得可能"
 
+      # URLをSpreadsheetに記入
       if (data['channel'] == @channel_id)
         puts "channel ok"
         puts data
-        if (!data.has_key?('bot_id'))
-          puts "I have not the key of bot_id."
+        if (!data.has_key?('bot_id') && data['username'] != "slackbot")
+          puts "I have not the key of bot_id and slackbot"
           if (data.has_key?('text'))
             puts "I have the key of text."
             if (!!(data['text'] =~ /\<https?:\/\/.+?\>/))
               puts "I have a url."
               if data['text'].scan(/https?.+?/).size.to_i == 1
-                Slack.chat_postMessage post_url_params(data['text'])
+                Slack.chat_postMessage post_url_params(data['text'], data['user'])
                 access_spreadsheet # スプレッドシートに書き込み
               else
                 puts "2個以上または0個マッチしています。"
-                Slack.chat_postMessage post_error_params("正しく入力してください。")
+                Slack.chat_postMessage post_error_params("正しく入力してください。", data['user'])
               end
             else
               puts "I have any urls."
@@ -63,6 +68,10 @@ Thread.start do
         puts "指定チャンネルではありません。"
       end
 
+      # ノしたらURL出力
+      if ((data['text'] == 'ノ' || data['text'] =='丿' || data['text'] =='ﾉ') && data['subtype'] != 'bot_message' && data['channel'] == @channel_id)
+        Slack.chat_postMessage get_url_params(get_url_by_spreadsheet, data['user'])
+      end
     end #client
   client.start
 end #Slack
