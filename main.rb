@@ -30,7 +30,7 @@ def post_error_params(comment = '', user = '')
 end
 
 def get_url_params(comment = '', user = '')
-  text = "こちら\n" + comment
+  text = "おすすめはこちら♪\n" + comment
   @user = user
   return params(@channel_id, @bot_name, text, @user)
 end
