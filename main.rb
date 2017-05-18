@@ -5,7 +5,6 @@ require './app.rb'
 
 @channel_id = ENV['channel_id']
 @token = ENV['token']
-
 @bot_name = "DJ bot"
 
 def params(channel_id = '', bot_name = '', text = '', user = '')
