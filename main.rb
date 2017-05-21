@@ -17,10 +17,10 @@ def params(channel_id = '', bot_name = '', text = '', user = '')
 end
 
 def post_url_params(comment = '', user = '')
-  @url = "\n" + comment.match(/\<https?:\/\/.+?\>/).to_s.gsub(/(\<|\>|\|.+)/, "")
+  @url = comment.match(/\<https?:\/\/.+?\>/).to_s.gsub(/(\<|\>|\|.+)/, "")
   @description = comment.sub(/\n<.*?>/,"")
   @user = user
-  return params(@channel_id, @bot_name, @description + @url, @user)
+  return params(@channel_id, @bot_name, @description + "\n" + @url, @user)
 end
 
 def post_error_params(comment = '', user = '')
