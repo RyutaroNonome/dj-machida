@@ -29,6 +29,7 @@ def access_spreadsheet
   p ws.num_cols
   @row_id = ws.num_rows
   ws[@row_id + 1, 2] = @url
+  ws[@row_id + 1, 2] = @description
   # ws[@row_id + 1, 4] = user_name
   ws[@row_id + 1, 5] = @user
 
@@ -53,8 +54,9 @@ def get_url_by_spreadsheet
 
   # 2行目以降のランダムな数字を出力 0.1.2... → 2.3.4...
   random_num = rand(ws.num_rows.to_i) + 2
+  @getted_description = ws[random_num, 3]
   @getted_url = ws[random_num, 2]
-  return @getted_url
+  return @getted_url + "\n" + @getted_description
 end
 
 # get_url_by_spreadsheet

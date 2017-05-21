@@ -18,6 +18,7 @@ end
 
 def post_url_params(comment = '', user = '')
   @url = comment.match(/\<https?:\/\/.+?\>/).to_s.gsub(/(\<|\>|\|.+)/, "")
+  @description = comment.sub(/\n<.*?>/,"")
   @user = user
   return params(@channel_id, @bot_name, @url, @user)
 end
@@ -29,7 +30,7 @@ def post_error_params(comment = '', user = '')
 end
 
 def get_url_params(comment = '', user = '')
-  text = "おすすめはこちら♪\n" + comment
+  text = "どうぞ♪\n" + comment
   @user = user
   return params(@channel_id, @bot_name, text, @user)
 end
