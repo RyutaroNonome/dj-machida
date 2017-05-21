@@ -29,7 +29,7 @@ def access_spreadsheet
   p ws.num_cols
   @row_id = ws.num_rows
   ws[@row_id + 1, 2] = @url
-  ws[@row_id + 1, 2] = @description
+  ws[@row_id + 1, 3] = @description
   # ws[@row_id + 1, 4] = user_name
   ws[@row_id + 1, 5] = @user
 
