@@ -33,6 +33,7 @@ def access_spreadsheet
   # ws[@row_id + 1, 4] = user_name
   ws[@row_id + 1, 5] = @user
 
+
   ws.save
   #id リセット
   @row_id , @column_id = 0
