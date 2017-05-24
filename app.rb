@@ -4,12 +4,12 @@ require "pp"
 require 'oauth2'
 # require './path.rb'
 
+class Spread
 @client_id           = ENV['client_id']
 @client_secret       = ENV['client_secret']
 @refresh_token       = ENV['refresh_token']
 @MY_SPREAD_SHEET_KEY = ENV['MY_SPREAD_SHEET_KEY']
 
-class Spread
 def self.access_spreadsheet
   client = OAuth2::Client.new(
     @client_id,
