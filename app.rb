@@ -10,7 +10,7 @@ require 'oauth2'
 @MY_SPREAD_SHEET_KEY = ENV['MY_SPREAD_SHEET_KEY']
 
 class Spread
-def access_spreadsheet
+def self.access_spreadsheet
   client = OAuth2::Client.new(
     @client_id,
     @client_secret,
@@ -42,7 +42,7 @@ end
 
 # access_spreadsheet
 
-def get_url_by_spreadsheet
+def self.get_url_by_spreadsheet
   client = OAuth2::Client.new(
     @client_id,
     @client_secret,
