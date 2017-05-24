@@ -18,7 +18,7 @@ end
 
 def post_url_params(comment = '', user = '')
   @url = comment.match(/\<https?:\/\/.+?\>/).to_s.gsub(/(\<|\>|\|.+)/, "")
-  @description = comment.sub(/\n<.*?>/,"")
+  @description = comment.sub(/<.*?>/,"")
   @user = user
   return params(@channel_id, @bot_name, @description + "\n" + @url, @user)
 end
