@@ -51,8 +51,8 @@ Thread.start do
           puts "I have not the key of bot_id and slackbot"
           if (data.has_key?('text'))
             puts "I have the key of text."
-            # if (!!(comment =~ /^(?=.*\<https?:\/\/.+?\>)(?=.*youtube)/))
-            if (!!(data['text'] =~ /\<https?:\/\/.+?\>/))
+            if (!!(comment =~ /^(?=.*\<https?:\/\/.+?\>)(?=.*youtube)/))
+            # if (!!(data['text'] =~ /\<https?:\/\/.+?\>/))
               puts "I have a url."
               if data['text'].scan(/https?.+?/).size.to_i == 1
                 Slack.chat_postMessage post_url_params(data['text'], data['user'])
