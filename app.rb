@@ -9,6 +9,7 @@ require 'oauth2'
 @refresh_token       = ENV['refresh_token']
 @MY_SPREAD_SHEET_KEY = ENV['MY_SPREAD_SHEET_KEY']
 
+# class Spread
 def access_spreadsheet
   client = OAuth2::Client.new(
     @client_id,
