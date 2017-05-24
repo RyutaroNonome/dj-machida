@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'slack'
-require './app.rb'
+require './app'
 # require './path.rb'
 
 @channel_id = ENV['channel_id']
@@ -56,7 +56,7 @@ Thread.start do
               puts "I have a url."
               if data['text'].scan(/https?.+?/).size.to_i == 1
                 Slack.chat_postMessage post_url_params(data['text'], data['user'])
-                access_spreadsheet # スプレッドシートに書き込み
+                Spread.access_spreadsheet # スプレッドシートに書き込み
               else
                 puts "2個以上または0個マッチしています。"
                 Slack.chat_postMessage post_error_params("正しく入力してください。", data['user'])
@@ -74,7 +74,7 @@ Thread.start do
 
       # ノしたらURL出力
       if ((data['text'] == 'ノ' || data['text'] =='丿' || data['text'] =='ﾉ') && data['subtype'] != 'bot_message' && data['channel'] == @channel_id)
-        Slack.chat_postMessage get_url_params(get_url_by_spreadsheet, data['user'])
+        Slack.chat_postMessage get_url_params(Spread.get_url_by_spreadsheet, data['user'])
       end
     end #client
   client.start

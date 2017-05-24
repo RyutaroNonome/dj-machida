@@ -9,7 +9,7 @@ require 'oauth2'
 @refresh_token       = ENV['refresh_token']
 @MY_SPREAD_SHEET_KEY = ENV['MY_SPREAD_SHEET_KEY']
 
-# class Spread
+class Spread
 def access_spreadsheet
   client = OAuth2::Client.new(
     @client_id,
@@ -59,6 +59,7 @@ def get_url_by_spreadsheet
   @getted_description = ws[random_num, 3]
   @getted_url = ws[random_num, 2]
   return @getted_url + "\n" + @getted_description
+end
 end
 
 # get_url_by_spreadsheet
