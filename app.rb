@@ -17,7 +17,7 @@ class Spread
       token_url: "/o/oauth2/token",
       authorize_url: "/o/oauth2/auth")
     @auth_token = OAuth2::AccessToken.from_hash(@client,{:refresh_token => @refresh_token, :expires_at => 3600})
-    auth_token = auth_token.refresh!
+    @auth_token = @auth_token.refresh!
     @session = GoogleDrive.login_with_oauth(@auth_token.token)
     ws = @session.spreadsheet_by_key(@MY_SPREAD_SHEET_KEY).worksheets[0]
 
