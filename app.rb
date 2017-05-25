@@ -3,7 +3,7 @@ require "google_drive"
 require "pp"
 require 'oauth2'
 
-class Spread
+# class Spread
   @client_id           = ENV['client_id']
   @client_secret       = ENV['client_secret']
   @refresh_token       = ENV['refresh_token']
@@ -22,7 +22,7 @@ class Spread
   #   @ws = session.spreadsheet_by_key(@MY_SPREAD_SHEET_KEY).worksheets[0]
   # end
 
-  def self.access_spreadsheet
+  def access_spreadsheet
     client = OAuth2::Client.new(
       @client_id,
       @client_secret,
@@ -53,7 +53,7 @@ class Spread
     @row_id , @column_id = 0
   end
 
-  def self.get_url_by_spreadsheet
+  def get_url_by_spreadsheet
     client = OAuth2::Client.new(
       @client_id,
       @client_secret,
@@ -75,4 +75,4 @@ class Spread
 
     return @ws[random_num, 3] + "\n" + @ws[random_num, 2]
   end
-end
+# end
