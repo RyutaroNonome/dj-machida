@@ -72,7 +72,6 @@ require 'oauth2'
     # @getted_url = @ws[random_num, 2]
     # return @getted_url + "\n" + @getted_description
     puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-
     return @ws[random_num, 3] + "\n" + @ws[random_num, 2]
   end
 # end
