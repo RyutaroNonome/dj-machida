@@ -45,7 +45,7 @@ require 'oauth2'
     ws[@row_id + 1, 2] = @url
     ws[@row_id + 1, 3] = @description
     # ws[@row_id + 1, 4] = user_name
-    @ws[@row_id + 1, 5] = @user
+    ws[@row_id + 1, 5] = @user
 
 
     ws.save
