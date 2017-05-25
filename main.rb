@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'slack'
-require './app'
+require './app.rb'
 
 @channel_id = ENV['channel_id']
 @token = ENV['token']

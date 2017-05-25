@@ -68,10 +68,10 @@ require 'oauth2'
     # 2行目以降のランダムな数字を出力 0.1.2... → 2.3.4...
     # Spread.new()
     random_num = rand(@ws.num_rows.to_i) + 2
-    # @getted_description = @ws[random_num, 3]
-    # @getted_url = @ws[random_num, 2]
-    # return @getted_url + "\n" + @getted_description
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    return @ws[random_num, 3] + "\n" + @ws[random_num, 2]
+    @getted_description = @ws[random_num, 3]
+    @getted_url = @ws[random_num, 2]
+    return @getted_url + "\n" + @getted_description
+    # puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    # return @ws[random_num, 3] + "\n" + @ws[random_num, 2]
   end
 # end
